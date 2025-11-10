@@ -95,6 +95,15 @@ chmod 751 /etc/sssd/pki
 chmod 640 /etc/sssd/sssd.conf
 ```
 
+### Location of the certificates
 
+If you obtained the `sssd.conf` file from a Linux 8 or 9 computer, you must correct the location of the
+certificates. The following shows the old location followed by the new, correct location:
+
+```
+< 	ldap_tls_cacert = /etc/openldap/cacerts/ca-chain.pem
+---
+> 	ldap_tls_cacert = /etc/pki/tls/certs/ca-bundle.crt
+```
 
 

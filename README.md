@@ -71,4 +71,30 @@ The kerberos file, `/etc/krb5.conf` can be dropped into its location overwriting
 is provided as a part of a clean installation of Linux 10. This file is world readable, so no changes to its
 permissions are required.
 
-The sssd file, `/etc/sssd/sssd.conf` will need to have its permissions set to `0600`. The owner should be root
+The sssd file, `/etc/sssd/sssd.conf` will be a new file.
+
+### Set the permissions and owners
+
+The permissions and owners should be set appropriately:
+
+```
+[~]: tree -pug /etc/sssd
+[drwxr-x--- root     sssd    ]  /etc/sssd
+├── [drwxr-x--x root     sssd    ]  conf.d
+├── [drwxr-x--x root     sssd    ]  pki
+└── [-rw-r----- root     sssd    ]  sssd.conf
+```
+
+The commands needed to accomplish the above setup are:
+
+```
+chown -R root:sssd /etc/sssd
+chmod 750 /etc/sssd
+chmod 751 /etc/sssd/conf.d
+chmod 751 /etc/sssd/pki
+chmod 640 /etc/sssd/sssd.conf
+```
+
+
+
+

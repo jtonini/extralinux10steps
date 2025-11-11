@@ -30,6 +30,8 @@ While these are _generally_ needed in the workstation environment, the locations
 sources of many libraries have changed since 8.10. Additionally, some of the system objects (.so files)
 that were current in 8.10 are now in compatibility libraries.
 
+### Truly required for normal operation
+
 Many of the installations below could be combined into a single `dnf install ...` command,
 but they are listed individually for clarity.
 
@@ -44,6 +46,45 @@ dnf install libXmu\*
 dnf install libffi\*
 ```
 
+### Possibly required for builds
+
+The following may not be required unless you need to build a package locally. It takes only a little time
+to install them, and they do not take up much space. Many of the development tools provide one or more
+system objects that will be required by pacakages built with the tool, implying that installing the
+development tools will save you time down the road.
+
+Once installed, the usual `dnf update` process will update them if required. Also note that several of
+the packages (perhaps most) may already be present depending on which install image was chosen when
+Linux 10 was installed.
+
+```
+dnf install bc 
+dnf install bison\*
+dnf install bzip2 bzip2-devel
+dnf install cmake\* 
+dnf install g++ 
+dnf install gcc gcc-gfortran gcc-c++ 
+dnf install glibc-headers 
+dnf install kernel-headers 
+dnf install libnsl 
+dnf install libncurses 
+dnf install libXt-devel libX11-devel libXext-devel 
+dnf install make 
+dnf install mesa\* 
+dnf install mesa-lib\* 
+dnf install netcdf-devel openmpi-devel fftw-devel 
+dnf install openmpi\* 
+dnf install patch 
+dnf install perl 
+dnf install python3-devel 
+dnf install tcsh 
+dnf install tcl-devel 
+dnf install swig\* 
+dnf install util-linux 
+dnf install wget 
+dnf install zlib\* 
+```
+
 ### Extra legacy libraries.
 
 For all of these legacy libraries, you will need to create the appropriate symbolic links. For example,
@@ -54,6 +95,12 @@ you will need these links in `/usr/lib64`:
 ln -s libffi.so.6.0.2 libffi.so.6
 ln -s libffi.so.6.0.2 libffi.so.6.0
 ```
+
+Libraries:
+```
+libffi.so.6
+```
+
 
 ## NVIDIA drivers and CUDA 
 

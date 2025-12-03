@@ -74,7 +74,7 @@ dnf install gcc gcc-gfortran gcc-c++
 dnf install glibc-headers 
 dnf install kernel-headers 
 dnf install libnsl 
-dnf install libncurses 
+dnf install ncurses\*
 dnf install libXt-devel libX11-devel libXext-devel 
 dnf install make 
 dnf install mesa\* 
@@ -217,3 +217,19 @@ The output should look something like this:
              └─307465 /usr/libexec/sssd/sssd_autofs --logger=files
 ```
 
+### Setting up the /usr/local software from the NAS
+
+Add this entry to `/etc/fstab`:
+
+`141.166.186.35:/mnt/usrlocal/8  /usr/local/chem.sw  nfs     ro,nosuid,nofail,_netdev,bg,timeo=10,retrans=2 0 0`
+
+```
+mkdir -p /usr/local/columbus/Col7.2.2_2023-09-06_linux64.ifc_bin
+cd /usr/local/columbus/Col7.2.2_2023-09-06_linux64.ifc_bin
+ln -s /usr/local/chem.sw/Columbus Columbus
+```
+
+```
+cd /usr/local
+for f in $(ls -1 chem.sw); do ln -s "chem.sw/$f" "$f"; done
+```

@@ -4,7 +4,9 @@ Note that the assumption in the explanation is that `eth0` is the already connec
 interface that remains with the UR network. `eth1` is the new one. Actual names will 
 differ.
 
-The private network will be `10.11.12.0/24`. Fewer zeros, fewer typos. 
+The private network will be `10.11.12.0/24`. Fewer zeros, fewer typos. Also, UR does not use
+the `10.0.0.0/8` address space; we use `172.16.0.0/12` for our private IPs like the wireless
+networks and the computers like Spydur in the data center.
 
 NASes will be assigned addresses in the `10.11.12.1 .. 10.11.12.9` range. This does not
 create a sub-net; it is just for organization. 

@@ -305,7 +305,27 @@ local rpm install is that the rpm itself can be copied to another workstation, a
 repeated. *Note: if you only had one workstation, you might prefer the network rpm.*
 
 The installation of the CUDA toolkit involves two parts: [1] Installing the repo rpm, and [2] installing the
-contents of the repo. The first step only makes this repo available.
+contents of the repo. The first step only makes the repo available for additional actions. These two steps will 
+install the toolkit.
+
+```bash
+dnf install cuda-repo-rhel10-13*.rpm
+dnf install cuda-toolkit
+```
+
+The installation will set the links correctly, and you can check the installation with
+
+`/usr/local/cuda/bin/nvcc --version`
+
+And you should see something like this (depending on the exact version you installed):
+
+```
+nvcc: NVIDIA (R) Cuda compiler driver
+Copyright (c) 2005-2025 NVIDIA Corporation
+Built on Wed_Aug_20_01:58:59_PM_PDT_2025
+Cuda compilation tools, release 13.0, V13.0.88
+Build cuda_13.0.r13.0/compiler.36424714_0
+```
 
 
 

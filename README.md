@@ -328,8 +328,28 @@ Build cuda_13.0.r13.0/compiler.36424714_0
 ```
 
 
+### GPU Direct Storage Installation
 
-### GPU Direct Filesystem Installation
+The GPU Direct Storage software, a.k.a., GDS (GPU Direct Storage) is present in the CUDA
+toolkit rpm. It provides higher I/O speed when used with NVMe M.2 drives that are in the CPU-direct
+slot on the motherboard. Installation is simple:
+
+```bash
+dnf install nvidia-gds
+```
+
+The package is quite small. To see the default configuration (and to validate the GDS is aware of your setup),
+issue this command:
+
+`/usr/local/cuda/gds/tools/gdscheck -p`
+
+Each of these parameters is set/unset in the file `/etc/cufile.json` It usually is not necessary to "tune" this
+file, but in cases where the GPU support for GDS is marginal, it may be required. Here are the boundaries:
+
+1. GTX 1080 and earlier cannot support GDS.
+2. 3090 -- works well with GDS.
+3. 4090 -- only works with the Enterprise driver (the one you download from Nvidia, rather than the one in some repos).
+
 
 
 

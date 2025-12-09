@@ -300,7 +300,12 @@ As with the NVIDIA drivers, CUDA is obtained via a webpage: https://developer.nv
 5. Click `rpm (local)`
 
 You will get a file with a name like this: `cuda-repo-rhel10-13-0-local-13.0.1_580.82.07-1.x86_64.rpm`
-(It will probably say 13.1.xxx because that's the current version of Cuda.)
+(It will probably say 13.1.xxx because that's the current version of Cuda.) The advantage of using the 
+local rpm install is that the rpm itself can be copied to another workstation, and the installation 
+repeated. *Note: if you only had one workstation, you might prefer the network rpm.*
+
+The installation of the CUDA toolkit involves two parts: [1] Installing the repo rpm, and [2] installing the
+contents of the repo. The first step only makes this repo available.
 
 
 

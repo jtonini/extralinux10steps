@@ -350,6 +350,45 @@ file, but in cases where the GPU support for GDS is marginal, it may be required
 2. 3090 -- works well with GDS.
 3. 4090 -- only works with the Enterprise driver (the one you download from Nvidia, rather than the one in some repos).
 
+### GPU Direct Storage Assessment
+
+Save this file as `gdsread.cu`, or something similar.
+
+```c
+#include <fcntl.h>
+#include <stdlib.h>
+#include <cuda_runtime.h>
+#include <cufile.h>
+
+int main(int argc, char **argv) {
+    const char *path = argv[1]; size_t sz = strtoull(argv[2], NULL, 10);
+    int fd = open(path, O_RDONLY | O_DIRECT);
+    cuFileDriverOpen();
+    CUfileDescr_t d = {}; d.handle.fd = fd; d.type = CU_FILE_HANDLE_TYPE_OPAQUE_FD;
+    CUfileHandle_t h; cuFileHandleRegister(&h, &d);
+    void *dptr; cudaMalloc(&dptr, sz);
+    ssize_t n = cuFileRead(h, dptr, sz, 0, 0); cudaDeviceSynchronize();
+    cuFileHandleDeregister(h); cuFileDriverClose(); close(fd); cudaFree(dptr);
+    return (n < 0);
+}
+```
+
+Compile it: `nvcc -O2 -o gdsread gdsread.cu -lcufile`
+
+Find a big file on the NVMe drive, or create one. Then, 
+
+```bash
+FILE=/mnt/nvme0/bigfile
+SIZE=$((32 * 1024 * 1024 * 1024))  # 32G .. at least larger than bigfile.
+
+/usr/bin/time -v "GDS read: %E real, %S sys, %U user" ./gdsread "$FILE" "$SIZE"
+```
+
+Now compare to the default method to read this file:
+
+`/usr/bin/time -v "CPU read: %E real, %S sys, %U user" dd if="$FILE" of=/dev/null bs=4M status=none`
+
+
 
 
 

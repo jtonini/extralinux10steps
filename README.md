@@ -3,8 +3,8 @@
 ## Prep for the installation
 
 The installable image of the OS is on a bootable USB drive ("stick"). It may be the case that
-you will need to reboot into the BIOS screen, generally by pressing the `DEL` or `Delete` key
-during as the computer boots. There will be an option to choose the order in which the computer
+you will need to reboot into the BIOS screen, generally by pressing the `DEL` or `Delete` key 
+as the computer boots. There will be an option to choose the order in which the computer
 looks for bootable volumes. It is impossible to provide more precise information because the location
 of this feature varies between motherboards.
 

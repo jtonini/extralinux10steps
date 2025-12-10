@@ -1,5 +1,16 @@
 # Linux 10.x -- additional installation steps for workstations
 
+## Prep for the installation
+
+The installable image of the OS is on a bootable USB drive ("stick"). It may be the case that
+you will need to reboot into the BIOS screen, generally by pressing the `DEL` or `Delete` key
+during as the computer boots. There will be an option to choose the order in which the computer
+looks for bootable volumes. It is impossible to provide more precise information because the location
+of this feature varies between motherboards.
+
+Additionally, the identifier for the USB drive can also vary. One working strategy is to 
+promote all USB devices to a higher priority than the internal drive.
+
 **NB**: _This information is current as of 9 December 2025. If you are updating this
 document, please change this date._
 

@@ -56,7 +56,10 @@ but they are listed individually for clarity.
 
 ```bash
 dnf install epel-release
+dnf install https://download1.rpmfusion.org/free/el/rpmfusion-free-release-10.noarch.rpm
+dnf install https://download1.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-10.noarch.rpm
 dnf config-manager --add-repo https://developer.download.nvidia.com/compute/cuda/repos/rhel10/x86_64/cuda-rhel10.repo
+dnf install dkms kernel-devel kernel-modules-extra unzip vulkan-devel libglvnd-devel elfutils-libelf-devel
 dnf install environment-modules
 dnf install libcrypt\*
 dnf install libgfortran\*

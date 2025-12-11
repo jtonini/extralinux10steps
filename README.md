@@ -80,10 +80,13 @@ the packages (perhaps most) may already be present depending on which install im
 Linux 10 was installed.
 
 ```bash
-dnf install bc 
+dnf install bc
+dnf install binutils
+dnf install binutils-devel
 dnf install bison\*
 dnf install bzip2 bzip2-devel
 dnf install cmake\* 
+dnf install dwarves
 dnf install g++ 
 dnf install gcc gcc-gfortran gcc-c++ 
 dnf install glibc-headers 
@@ -332,13 +335,14 @@ shutdown -r now
 
 #### Driver installation
 
-if there are failures and you need to try installation of a different driver, it is crucial to
+**If there are failures and you need to try installation of a different driver,** it is crucial to
 remove any bits and pieces from the failed installation[s].
 
-```
-nvidia-uninstall || true    # in case the runfile installed anything
+```bash
+nvidia-uninstall         # in case the runfile installed anything
 dnf remove '*nvidia*' -y    
 rm -rf /var/lib/dkms/nvidia* /usr/src/nvidia-* /lib/modules/$(uname -r)/extra/*nvidia*
+dnf clean all
 ```
 
 ### Cuda installation

@@ -330,6 +330,16 @@ systemctl set-default multiuser.target
 shutdown -r now
 ```
 
+#### Driver installation
+
+if there are failures and you need to try installation of a different driver, it is crucial to
+remove any bits and pieces from the failed installation[s].
+
+```
+nvidia-uninstall || true    # in case the runfile installed anything
+dnf remove '*nvidia*' -y    
+rm -rf /var/lib/dkms/nvidia* /usr/src/nvidia-* /lib/modules/$(uname -r)/extra/*nvidia*
+```
 
 ### Cuda installation
 

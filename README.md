@@ -266,12 +266,15 @@ ln -s /usr/local/chem.sw/Columbus Columbus
 
 ```bash
 cd /usr/local
-rmdir bin
-rmdir games
-rmdir lib
-rmdir lib64
-rmdir libexec
-rmdir sbin
+rm -fr bin
+rm -fr etc
+rm -fr games
+rm -fr include
+rm -fr lib
+rm -fr lib64
+rm -fr libexec
+rm -fr sbin
+rm -fr src
 mkdir -p chem.sw
 for f in $(ls -1 chem.sw); do ln -s "chem.sw/$f" "$f"; done
 ```

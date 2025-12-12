@@ -71,7 +71,7 @@ On reboot, SELinux will not return to life.
 The install media will be behind the current release even if you created the install media
 moments ago.
 
-`dnf update`
+`dnf -y update`
 
 ## Extra libraries
 
@@ -85,17 +85,17 @@ Many of the installations below could be combined into a single `dnf install ...
 but they are listed individually for clarity.
 
 ```bash
-dnf install epel-release
-dnf install https://download1.rpmfusion.org/free/el/rpmfusion-free-release-10.noarch.rpm
-dnf install https://download1.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-10.noarch.rpm
-dnf config-manager --add-repo https://developer.download.nvidia.com/compute/cuda/repos/rhel10/x86_64/cuda-rhel10.repo
-dnf install dkms kernel-devel kernel-modules-extra unzip vulkan-devel libglvnd-devel elfutils-libelf-devel
-dnf install environment-modules
-dnf install libcrypt\*
-dnf install libgfortran\*
-dnf install libGLU\*
-dnf install libXmu\*
-dnf install libffi\*
+dnf -y install epel-release
+dnf -y install https://download1.rpmfusion.org/free/el/rpmfusion-free-release-10.noarch.rpm
+dnf -y install https://download1.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-10.noarch.rpm
+dnf -y config-manager --add-repo https://developer.download.nvidia.com/compute/cuda/repos/rhel10/x86_64/cuda-rhel10.repo
+dnf -y install dkms kernel-devel kernel-modules-extra unzip vulkan-devel libglvnd-devel elfutils-libelf-devel
+dnf -y install environment-modules
+dnf -y install libcrypt\*
+dnf -y install libgfortran\*
+dnf -y install libGLU\*
+dnf -y install libXmu\*
+dnf -y install libffi\*
 ```
 
 ### Possibly required for builds
@@ -110,34 +110,34 @@ the packages (perhaps most) may already be present depending on which install im
 Linux 10 was installed.
 
 ```bash
-dnf install bc
-dnf install binutils
-dnf install binutils-devel
-dnf install bison\*
-dnf install bzip2 bzip2-devel
-dnf install cmake\* 
-dnf install dwarves
-dnf install g++ 
-dnf install gcc gcc-gfortran gcc-c++ 
-dnf install glibc-headers 
-dnf install kernel-headers 
-dnf install libnsl 
-dnf install ncurses\*
-dnf install libXt-devel libX11-devel libXext-devel 
-dnf install make 
-dnf install mesa\* 
-dnf install mesa-lib\* 
-dnf install netcdf-devel openmpi-devel fftw-devel 
-dnf install openmpi\* 
-dnf install patch 
-dnf install perl 
-dnf install python3-devel 
-dnf install tcsh 
-dnf install tcl-devel 
-dnf install swig\* 
-dnf install util-linux 
-dnf install wget 
-dnf install zlib\* 
+dnf -y install bc
+dnf -y install binutils
+dnf -y install binutils-devel
+dnf -y install bison\*
+dnf -y install bzip2 bzip2-devel
+dnf -y install cmake\* 
+dnf -y install dwarves
+dnf -y install g++ 
+dnf -y install gcc gcc-gfortran gcc-c++ 
+dnf -y install glibc-headers 
+dnf -y install kernel-headers 
+dnf -y install libnsl 
+dnf -y install ncurses\*
+dnf -y install libXt-devel libX11-devel libXext-devel 
+dnf -y install make 
+dnf -y install mesa\* 
+dnf -y install mesa-lib\* 
+dnf -y install netcdf-devel openmpi-devel fftw-devel 
+dnf -y install openmpi\* 
+dnf -y install patch 
+dnf -y install perl 
+dnf -y install python3-devel 
+dnf -y install tcsh 
+dnf -y install tcl-devel 
+dnf -y install swig\* 
+dnf -y install util-linux 
+dnf -y install wget 
+dnf -y install zlib\* 
 ```
 
 ### Extra legacy libraries.
@@ -155,9 +155,6 @@ Libraries:
 ```bash
 libffi.so.6
 ```
-
-
-
 
 ## Centralized authentication
 

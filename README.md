@@ -262,6 +262,7 @@ Add this entry to `/etc/fstab`:
 mkdir -p /usr/local/columbus/Col7.2.2_2023-09-06_linux64.ifc_bin
 cd /usr/local/columbus/Col7.2.2_2023-09-06_linux64.ifc_bin
 ln -s /usr/local/chem.sw/Columbus Columbus
+mount -av
 ```
 
 ```bash

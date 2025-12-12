@@ -223,6 +223,7 @@ update-ca-trust
 You should now be able to start the authentication system:
 
 ```bash
+authselect select sssd --force
 systemctl enable sssd
 systemctl start sssd
 ```

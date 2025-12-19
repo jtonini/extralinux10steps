@@ -120,7 +120,8 @@ dnf -y install dwarves
 dnf -y install g++ 
 dnf -y install gcc gcc-gfortran gcc-c++ 
 dnf -y install glibc-headers 
-dnf -y install kernel-headers 
+dnf -y install kernel-headers
+dnf -y install krb5-workstation
 dnf -y install libnsl 
 dnf -y install ncurses\*
 dnf -y install libXt-devel libX11-devel libXext-devel 
@@ -133,7 +134,8 @@ dnf -y install patch
 dnf -y install perl 
 dnf -y install python3-devel 
 dnf -y install tcsh 
-dnf -y install tcl-devel 
+dnf -y install tcl-devel
+dnf -y install sssd-tools
 dnf -y install swig\* 
 dnf -y install util-linux 
 dnf -y install wget 

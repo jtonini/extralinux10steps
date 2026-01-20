@@ -217,6 +217,7 @@ certificates and the path to the certificate. The following show the old locatio
 < 	ldap_tls_cacert = /etc/openldap/cacerts
 ---
 > 	ldap_tls_cacert = /etc/pki/tls/certs
+```
 
 Now fix the certificate file path:
 

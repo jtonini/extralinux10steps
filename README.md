@@ -396,6 +396,24 @@ otherwise
 grub2-mkconfig -o /boot/grub2/grub.cfg
 ```
 
+### Remove FIPS Boot Parameter
+
+If the system was installed with FIPS mode, remove it to avoid conflicts with LEGACY crypto policy:
+```bash
+# Check if FIPS is in boot parameters
+grep fips /proc/cmdline
+
+# If present, remove it
+grubby --update-kernel ALL --remove-args fips=1
+
+# Verify removal
+grubby --info=ALL | grep args | head -1
+
+# Reboot for changes to take effect
+```
+
+Note: The FIPS parameter removal will take effect on next reboot. The system is already using LEGACY crypto policy.
+
 Disable the graphic display manager, and reboot the computer in text mode so that it is 
 simpler to install the NVIDIA software.
 

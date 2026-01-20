@@ -152,13 +152,13 @@ dnf -y install zlib\*
 ### Extra legacy libraries.
 
 For all of these legacy libraries, you will need to create the appropriate symbolic links. For example,
-if you need `libffi.so.6`, the most recent version you are likely to find is `libffi.so.6.0.2`. Consequently,
+if you need `libffi.so.6`, the most recent version you are likely to find is `libffi.so.8.*`. Consequently,
 you will need these links in `/usr/lib64`:
 
 ```bash
 cd /usr/lib64
-ln -s libffi.so.6.0.2 libffi.so.6
-ln -s libffi.so.6.0.2 libffi.so.6.0
+ln -s libffi.so.8 libffi.so.6
+ln -s libffi.so.8 libffi.so.6.0
 ```
 
 Libraries:

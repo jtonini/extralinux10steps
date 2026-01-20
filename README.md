@@ -214,9 +214,9 @@ If you obtained the `sssd.conf` file from a Linux 8 or 9 computer, you must corr
 certificates and the path to the certificate. The following show the old location followed by the new, correct location:
 
 ```bash
-< 	ldap_tls_cacert = /etc/openldap/cacerts
+< 	ldap_tls_cacertdir = /etc/openldap/cacerts
 ---
-> 	ldap_tls_cacert = /etc/pki/tls/certs
+> 	ldap_tls_cacertdir = /etc/pki/tls/certs
 ```
 
 Now fix the certificate file path:

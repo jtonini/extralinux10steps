@@ -12,8 +12,14 @@ Additionally, the identifier for the USB drive can also vary. One working strate
 promote all USB devices to a higher priority than the internal drive. At this point, you
 should be able to reboot into the OS of the installation USB drive.
 
-**NB**: _This information is current as of 12 December 2025. If you are updating this
+**NB**: _This information is current as of 20 January 2026. If you are updating this
 document, please change this date._
+
+## Prevents non-root users from logging in until the machine is setup
+
+```bash
+touch /etc/nologin
+```
 
 ## Use visudo to avoid constantly typing your password
 
@@ -150,13 +156,14 @@ if you need `libffi.so.6`, the most recent version you are likely to find is `li
 you will need these links in `/usr/lib64`:
 
 ```bash
+cd /usr/lib64
 ln -s libffi.so.6.0.2 libffi.so.6
 ln -s libffi.so.6.0.2 libffi.so.6.0
 ```
 
 Libraries:
 ```bash
-libffi.so.6
+ll libffi.so.6*
 ```
 
 ## Centralized authentication
@@ -204,13 +211,22 @@ chmod 640 /etc/sssd/sssd.conf
 ### Location of the certificates
 
 If you obtained the `sssd.conf` file from a Linux 8 or 9 computer, you must correct the location of the
-certificates. The following shows the old location followed by the new, correct location:
+certificates and the path to the certificate. The following show the old location followed by the new, correct location:
+
+```bash
+< 	ldap_tls_cacert = /etc/openldap/cacerts
+---
+> 	ldap_tls_cacert = /etc/pki/tls/certs
+
+Now fix the certificate file path:
 
 ```bash
 < 	ldap_tls_cacert = /etc/openldap/cacerts/ca-chain.pem
 ---
 > 	ldap_tls_cacert = /etc/pki/tls/certs/ca-bundle.crt
 ```
+
+
 
 ### Update trust model and crypographic algorithms
 
@@ -262,14 +278,22 @@ The output should look something like this:
 dnf install python3-dnf-plugin-versionlock
 ```
 
-### Setting up the /usr/local software from the NAS
+### Setting up the /usr/local software from the NAS and intel tools
 
-Add this entry to `/etc/fstab`:
+Add these entries to `/etc/fstab`:
 
-`141.166.186.35:/mnt/usrlocal/8  /usr/local/chem.sw  nfs     ro,nosuid,nofail,_netdev,bg,timeo=10,retrans=2 0 0`
+Run these lines to do that:
+```bash
+cat >> /etc/fstab << 'EOF'
+141.166.186.35:/mnt/usrlocal/8         /usr/local/chem.sw  nfs  ro,nosuid,nofail,_netdev,bg,timeo=10,retrans=2  0 0
+141.166.186.35:/mnt/usrlocal/intel-tools  /opt/intel       nfs  ro,nosuid,nofail,_netdev,bg,timeo=10,retrans=2  0 0
+EOF
+```
 
 ```bash
 mkdir -p /usr/local/columbus/Col7.2.2_2023-09-06_linux64.ifc_bin
+mkdir -p /opt/intel
+mkdir -p chem.sw
 cd /usr/local/columbus/Col7.2.2_2023-09-06_linux64.ifc_bin
 ln -s /usr/local/chem.sw/Columbus Columbus
 mount -av
@@ -286,7 +310,6 @@ rm -fr lib64
 rm -fr libexec
 rm -fr sbin
 rm -fr src
-mkdir -p chem.sw
 for f in $(ls -1 chem.sw); do ln -s "chem.sw/$f" "$f"; done
 ```
 
@@ -377,7 +400,7 @@ simpler to install the NVIDIA software.
 
 ```bash
 systemctl disable gdm
-systemctl set-default multiuser.target
+systemctl set-default multi-user.target
 shutdown -r now
 ```
 

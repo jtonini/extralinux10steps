@@ -227,8 +227,6 @@ Now fix the certificate file path:
 > 	ldap_tls_cacert = /etc/pki/tls/certs/ca-bundle.crt
 ```
 
-
-
 ### Update trust model and crypographic algorithms
 
 These commands make the correct settings for the University of Richmond environment.
@@ -277,6 +275,17 @@ The output should look something like this:
 
 ```bash
 dnf install python3-dnf-plugin-versionlock
+```
+
+## Fix .bashrc for scp/rsync Compatibility
+
+Add this line to prevent output during non-interactive sessions:
+```bash
+# Fix root's .bashrc
+sed -i '1i # Exit if not running interactively\n[ -z "$PS1" ] && return\n' /root/.bashrc
+
+# Fix template for new users
+sed -i '1i # Exit if not running interactively\n[ -z "$PS1" ] && return\n' /etc/skel/.bashrc
 ```
 
 ### Setting up the /usr/local software from the NAS and intel tools

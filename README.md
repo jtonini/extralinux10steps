@@ -557,7 +557,11 @@ Now compare to the default method to read this file:
 systemctl enable gdm
 systemctl set-default graphical.target
 systemctl start gdm
+shutdown -r now
 ```
+
+
+### Bringing back users' data
 
 
 

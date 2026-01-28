@@ -562,7 +562,19 @@ shutdown -r now
 
 
 ### Bringing back users' data
+```bash
+mkdir -p /run/screen
+chmod 777 /run/screen
 
+# utomatically uses current hostname
+HOSTNAME=$(hostname -s)
+screen -dmS restore bash -c "rsync -avhP \
+  --exclude='scr/' \
+  --exclude='nohup.out' \
+  --exclude='*_macro' \
+  franksinatra:/mnt/everything/backup-testing/${HOSTNAME}/ \
+  /home/ > /var/log/${HOSTNAME}_restore.log 2>&1"
+```
 
 
 

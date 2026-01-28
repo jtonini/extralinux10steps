@@ -68,6 +68,9 @@ grubby --update-kernel ALL --args selinux=0
 
 Second, edit the `/etc/selinux/config` file so that the first non-comment line reads:
 ```
+vi /etc/selinux/config
+
+# edit
 SELINUX=disabled
 ```
 On reboot, SELinux will not return to life.

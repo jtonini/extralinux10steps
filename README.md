@@ -346,9 +346,14 @@ The driver and CUDA are both *built* on the workstation. For the build to take p
 system for the present kernel must be present.
 
 ```bash
+# Enable CRB (CodeReady Builder) repository
 dnf config-manager --set-enabled crb
-dnf install kernel-headers\*
-dnf install kernel-devel\*
+
+# Install kernel development packages
+dnf install -y kernel-headers kernel-devel
+
+# Install build tools
+dnf install -y gcc make dkms acpid libglvnd-glx libglvnd-opengl libglvnd-devel pkgconfig
 ```
 
 ### Driver installation

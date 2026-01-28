@@ -379,6 +379,15 @@ wget https://developer.download.nvidia.com/compute/nvidia-driver/580.105.08/loca
 The driver must be installed before the remainder of the steps. CUDA and the GDS rely on the driver's
 presence. 
 
+```bash
+# Install the local repo RPM
+dnf install -y nvidia-driver-local-repo-rhel10-580.105.08-1.0-1.x86_64.rpm
+
+# Clean and rebuild DNF cache
+dnf clean all
+dnf makecache
+```
+
 ##### Prevent nouveau from loading at boot.
 
 The `nouveau` driver is the default graphics driver included with the Rocky Linux distro. It must 

@@ -357,7 +357,8 @@ cd /tmp
 wget https://developer.download.nvidia.com/compute/nvidia-driver/580.105.08/local_installers/nvidia-driver-local-repo-rhel10-580.105.08-1.0-1.x86_64.rpm
 dnf install -y nvidia-driver-local-repo-rhel10-580.105.08-1.0-1.x86_64.rpm
 dnf clean all && dnf makecache
-dnf module install -y nvidia-driver:latest-dkms```
+dnf module install -y nvidia-driver:latest-dkms
+```
 
 ### Driver installation
 

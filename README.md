@@ -309,12 +309,12 @@ mkdir -p /usr/local/columbus/Col7.2.2_2023-09-06_linux64.ifc_bin
 mkdir -p /opt/intel
 cd /usr/local/columbus/Col7.2.2_2023-09-06_linux64.ifc_bin
 ln -s /usr/local/chem.sw/Columbus Columbus
-mount -av
 ```
 
 ```bash
 cd /usr/local
-mkdir -p chem.sw
+mkdir -p /usr/local/chem.sw
+mount -av
 rm -fr bin
 rm -fr etc
 rm -fr games

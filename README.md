@@ -97,6 +97,7 @@ dnf -y install https://download1.rpmfusion.org/nonfree/el/rpmfusion-nonfree-rele
 dnf -y config-manager --add-repo https://developer.download.nvidia.com/compute/cuda/repos/rhel10/x86_64/cuda-rhel10.repo
 dnf -y install dkms kernel-devel kernel-modules-extra unzip vulkan-devel libglvnd-devel elfutils-libelf-devel
 dnf -y install environment-modules
+dnf -y install kitty
 dnf -y install libcrypt\*
 dnf -y install libgfortran\*
 dnf -y install libGLU\*

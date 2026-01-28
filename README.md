@@ -307,7 +307,6 @@ EOF
 ```bash
 mkdir -p /usr/local/columbus/Col7.2.2_2023-09-06_linux64.ifc_bin
 mkdir -p /opt/intel
-mkdir -p chem.sw
 cd /usr/local/columbus/Col7.2.2_2023-09-06_linux64.ifc_bin
 ln -s /usr/local/chem.sw/Columbus Columbus
 mount -av
@@ -315,6 +314,7 @@ mount -av
 
 ```bash
 cd /usr/local
+mkdir -p chem.sw
 rm -fr bin
 rm -fr etc
 rm -fr games

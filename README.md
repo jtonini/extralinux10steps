@@ -346,15 +346,18 @@ The driver and CUDA are both *built* on the workstation. For the build to take p
 system for the present kernel must be present.
 
 ```bash
-# Enable CRB (CodeReady Builder) repository
-dnf config-manager --set-enabled crb
+# Disable the problematic CRB repo
+dnf config-manager --set-disabled crb
 
-# Install kernel development packages
-dnf install -y kernel-headers kernel-devel
+# Install what we can
+dnf install -y kernel-headers kernel-devel gcc make dkms acpid libglvnd-glx libglvnd-opengl libglvnd-devel pkgconfig
 
-# Install build tools
-dnf install -y gcc make dkms acpid libglvnd-glx libglvnd-opengl libglvnd-devel pkgconfig
-```
+# Continue with NVIDIA driver installation
+cd /tmp
+wget https://developer.download.nvidia.com/compute/nvidia-driver/580.105.08/local_installers/nvidia-driver-local-repo-rhel10-580.105.08-1.0-1.x86_64.rpm
+dnf install -y nvidia-driver-local-repo-rhel10-580.105.08-1.0-1.x86_64.rpm
+dnf clean all && dnf makecache
+dnf module install -y nvidia-driver:latest-dkms```
 
 ### Driver installation
 
@@ -368,25 +371,9 @@ Go to https://www.nvidia.com/en-us/drivers/ and choose the correct driver.
 4. Click "View"
 5. Click "Download"
 
-Backup plan: This driver is known to work:
-
-```bash
-wget https://developer.download.nvidia.com/compute/nvidia-driver/580.105.08/local_installers/nvidia-driver-local-repo-rhel10-580.105.08-1.0-1.x86_64.rpm
-```
-
 #### Install the driver
 
-The driver must be installed before the remainder of the steps. CUDA and the GDS rely on the driver's
-presence. 
-
-```bash
-# Install the local repo RPM
-dnf install -y nvidia-driver-local-repo-rhel10-580.105.08-1.0-1.x86_64.rpm
-
-# Clean and rebuild DNF cache
-dnf clean all
-dnf makecache
-```
+If not done above.
 
 ##### Prevent nouveau from loading at boot.
 

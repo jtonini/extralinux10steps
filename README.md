@@ -552,9 +552,12 @@ Now compare to the default method to read this file:
 
 `/usr/bin/time -v "CPU read: %E real, %S sys, %U user" dd if="$FILE" of=/dev/null bs=4M status=none`
 
-
-
-
+### Enable gdm 
+```bash
+systemctl enable gdm
+systemctl set-default graphical.target
+systemctl start gdm
+```
 
 
 

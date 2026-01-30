@@ -595,20 +595,33 @@ for user in /home/*; do
 done
 ```
 
-### cuda symlinks
+### amber24 and cuda as Jan 2026
 
 ```bash
-cd /usr/local/cuda/targets/x86_64-linux/lib/
-ln -sf libcufft.so.12 libcufft.so.11
-ln -sf libcufft.so.12 libcufft.so.10
-ldconfig
-ls -la libcufft.so* | grep -E '\.so\.(10|11|12)'
+cd /tmp
 
+wget https://developer.download.nvidia.com/compute/cuda/12.0.0/local_installers/cuda_12.0.0_525.60.13_linux.run
 
+sudo sh /tmp/cuda_12.0.0_525.60.13_linux.run \
+  --silent \
+  --toolkit \
+  --toolkitpath=/usr/local/cuda-12.0 \
+  --no-opengl-libs \
+  --no-drm \
+  --no-man-page \
+  --override
 
+# Check installation
+ls -la /usr/local/cuda-12.0/
 
+# Check version
+/usr/local/cuda-12.0/bin/nvcc --version
 
-
+# Verify required libraries exist
+ls -la /usr/local/cuda-12.0/lib64/libcufft.so.11
+ls -la /usr/local/cuda-12.0/lib64/libcublas.so.12
+ls -la /usr/local/cuda-12.0/lib64/libcusolver.so.11
+```
 
 
 

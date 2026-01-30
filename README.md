@@ -137,7 +137,8 @@ dnf -y install ncurses\*
 dnf -y install libXt-devel libX11-devel libXext-devel 
 dnf -y install make 
 dnf -y install mesa\* 
-dnf -y install mesa-lib\* 
+dnf -y install mesa-lib\*
+dnf install -y mpich mpich-devel
 dnf -y install netcdf-devel openmpi-devel fftw-devel 
 dnf -y install openmpi\* 
 dnf -y install patch 

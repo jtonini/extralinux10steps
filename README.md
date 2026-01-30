@@ -125,7 +125,8 @@ dnf -y install binutils
 dnf -y install binutils-devel
 dnf -y install bison\*
 dnf -y install bzip2 bzip2-devel
-dnf -y install cmake\* 
+dnf -y install cmake\*
+dnf -y install expect
 dnf -y install dwarves
 dnf -y install g++ 
 dnf -y install gcc gcc-gfortran gcc-c++ 
@@ -578,8 +579,30 @@ screen -dmS restore bash -c "rsync -avhP \
 ```
 
 
+### Add users to nogroup
+# Once rsync has finished
 
+```bash
+groupadd -g 65533 nogroup
+for user in /home/*; do
+    user=$(basename "$user")
+    [ "$user" = "scratch" ] && continue
+    [ "$user" = "dnf-cache" ] && continue
+    [ "$user" = "lost+found" ] && continue
+    if id "$user" &>/dev/null && ! id "$user" | grep -q nogroup; then
+        usermod -aG nogroup "$user" && echo "Added: $user"
+    fi
+done
+```
 
+### cuda symlinks
+
+```bash
+cd /usr/local/cuda/targets/x86_64-linux/lib/
+ln -sf libcufft.so.12 libcufft.so.11
+ln -sf libcufft.so.12 libcufft.so.10
+ldconfig
+ls -la libcufft.so* | grep -E '\.so\.(10|11|12)'
 
 
 

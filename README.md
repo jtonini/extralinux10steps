@@ -430,7 +430,6 @@ dnf install nvidia-driver-local-repo-rhel10-580.105.08-1.0-1.x86_64.rpm
 dnf install -y https://repo.download.nvidia.com/baseos/el/el-files/10/nvidia-repositories-25.09-5.el10.x86_64.rpm
 dnf install -y nvidia-driver-580.82.07 nvidia-driver-libs-580.82.07 nvidia-driver-cuda-580.82.07 nvidia-driver-cuda-libs-580.82.07 nvidia-settings-580.82.07 nvidia-persistenced-580.82.07 kmod-nvidia-latest-dkms-580.82.07
 dnf clean all && dnf makecache
-dnf module install -y nvidia-driver:latest-dkms
 ```
 
 ### Cuda installation
@@ -464,7 +463,7 @@ toolkit rpm. It provides higher I/O speed when used with NVMe M.2 drives that ar
 slot on the motherboard. Installation is simple:
 
 ```bash
-dnf install nvidia-gds
+dnf install nvidia-gds --skip-broken
 ```
 
 The package is quite small. To see the default configuration (and to validate the GDS is aware of your setup),

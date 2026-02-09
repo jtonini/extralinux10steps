@@ -333,15 +333,6 @@ for f in $(ls -1 chem.sw); do ln -s "chem.sw/$f" "$f"; done
 
 **Achtung!** *This process is prone to minor mistakes that cause installation failures.*
 
-NOTE: It is beneficial to have the display driver installed even on the workstations where the 
-GPU is poorly suited for calculations. The video response is generally better when the display
-is driven from the GPU card / driver combo.
-## NVIDIA drivers and CUDA 
-
-```
-wget https://developer.download.nvidia.com/compute/nvidia-driver/580.105.08/local_installers/nvidia-driver-local-repo-rhel10-580.105.08-1.0-1.x86_64.rpm
-```
-
 ### Preliminary work
 
 The driver and CUDA are both *built* on the workstation. For the build to take place, the headers and development
@@ -356,20 +347,6 @@ dnf install -y kernel-headers kernel-devel gcc make dkms acpid libglvnd-glx libg
 ```
 
 ### Driver installation
-
-#### Get the driver
-
-Go to https://www.nvidia.com/en-us/drivers/ and choose the correct driver.
-
-1. Enter the model of the GPU.
-2. Choose Rocky Linux 10 as the OS.
-3. Click "Find"
-4. Click "View"
-5. Click "Download"
-
-#### Install the driver
-
-If not done above.
 
 ##### Prevent nouveau from loading at boot.
 

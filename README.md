@@ -421,6 +421,7 @@ dnf remove '*nvidia*' -y
 rm -rf /var/lib/dkms/nvidia* /usr/src/nvidia-* /lib/modules/$(uname -r)/extra/*nvidia*
 dnf clean all
 ```
+
 # Continue with NVIDIA driver installation
 # copy these .rpm from another machine or find it online; it has a list of repos.
 ```bash

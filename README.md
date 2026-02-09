@@ -527,6 +527,7 @@ shutdown -r now
 
 ### Bringing back users' data
 ```bash
+dnf install -y screen
 mkdir -p /run/screen
 chmod 777 /run/screen
 

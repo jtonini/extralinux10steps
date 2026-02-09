@@ -353,13 +353,6 @@ dnf config-manager --set-disabled crb
 
 # Install what we can
 dnf install -y kernel-headers kernel-devel gcc make dkms acpid libglvnd-glx libglvnd-opengl libglvnd-devel pkgconfig
-
-# Continue with NVIDIA driver installation
-cd /tmp
-wget https://developer.download.nvidia.com/compute/nvidia-driver/580.105.08/local_installers/nvidia-driver-local-repo-rhel10-580.105.08-1.0-1.x86_64.rpm
-dnf install -y nvidia-driver-local-repo-rhel10-580.105.08-1.0-1.x86_64.rpm
-dnf clean all && dnf makecache
-dnf module install -y nvidia-driver:latest-dkms
 ```
 
 ### Driver installation
@@ -451,31 +444,23 @@ dnf remove '*nvidia*' -y
 rm -rf /var/lib/dkms/nvidia* /usr/src/nvidia-* /lib/modules/$(uname -r)/extra/*nvidia*
 dnf clean all
 ```
+# Continue with NVIDIA driver installation
+# copy these .rpm from another machine or find it online; it has a list of repos.
+```bash
+dnf install nvidia-main-local-repo-25.11-11.el10.x86_64.rpm
+dnf install nvidia-driver-local-repo-rhel10-580.105.08-1.0-1.x86_64.rpm
+dnf install -y https://repo.download.nvidia.com/baseos/el/el-files/10/nvidia-repositories-25.09-5.el10.x86_64.rpm
+dnf install -y nvidia-driver-580.82.07 nvidia-driver-libs-580.82.07 nvidia-driver-cuda-580.82.07 nvidia-driver-cuda-libs-580.82.07 nvidia-settings-580.82.07 nvidia-persistenced-580.82.07 kmod-nvidia-latest-dkms-580.82.07
+dnf clean all && dnf makecache
+dnf module install -y nvidia-driver:latest-dkms
+```
 
 ### Cuda installation
 
 Note: Cuda 11.7 is resident on the NAS that supplies `/usr/local` to the workstations. Choice of CUDA 
 versions is done through the `alternatives` system.
 
-As with the NVIDIA drivers, CUDA is obtained via a webpage: https://developer.nvidia.com/cuda-downloads
-
-1. Click `Linux`
-2. Click `x86_64`
-3. Click `Rocky`
-4. Click `10`
-5. Click `rpm (local)`
-
-You will get a file with a name like this: `cuda-repo-rhel10-13-0-local-13.0.1_580.82.07-1.x86_64.rpm`
-(It will probably say 13.1.xxx because that's the current version of Cuda.) The advantage of using the 
-local rpm install is that the rpm itself can be copied to another workstation, and the installation 
-repeated. *Note: if you only had one workstation, you might prefer the network rpm.*
-
-The installation of the CUDA toolkit involves two parts: [1] Installing the repo rpm, and [2] installing the
-contents of the repo. The first step only makes the repo available for additional actions. These two steps will 
-install the toolkit.
-
 ```bash
-dnf install cuda-repo-rhel10-13*.rpm
 dnf install cuda-toolkit
 ```
 
